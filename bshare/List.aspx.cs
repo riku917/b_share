@@ -12,15 +12,36 @@ namespace bshare
 {
     public partial class List : System.Web.UI.Page
     {
-        //private SqlConnection cn = new SqlConnection();
-        //private SqlCommand cmd = new SqlCommand();
+        private SqlConnection cn = new SqlConnection();
+        private SqlCommand cmd = new SqlCommand();
 
-        //private string cnstr =
-        //    @"Data Source = (LocalDB)\MSSQLLocalDB;" +
-        //    @"AttachDbFilename=|DataDirectory|\SampleDatabase1.mdf;" +
-        //    @"Integrated Security = True;Connect Timeout = 30";
+        private string cnstr =
+            @"Data Source = (LocalDB)\MSSQLLocalDB;" +
+            @"AttachDbFilename=|DataDirectory|\SampleDatabase1.mdf;" +
+            @"Integrated Security = True;Connect Timeout = 30";
         protected void Page_Load(object sender, EventArgs e)
         {
+            cn.ConnectionString = cnstr; //接続文字列のセット
+            cn.Open(); //接続開始
+            cmd.Connection = cn; //SQLコマンドに接続を渡す
+            cmd.CommandType = CommandType.Text; //文字列型で命令を渡す宣言
+
+            cmd.CommandText = "SELECT DISTINCT [prefecture] FROM [Hospital]";
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                string rd = reader["prefecture"].ToString();
+                ListItem selectedListItem = DropDownList1.Items.FindByValue(rd);
+                
+                if (selectedListItem != null)
+                {
+                    selectedListItem.Enabled = false;
+                }
+            }
+            cn.Close(); //接続終了
+
             if (Session["type"] != null)
             {
                 Label1.Text = (string)Session["type"];//デバッグ

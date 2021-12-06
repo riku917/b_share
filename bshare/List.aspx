@@ -6,16 +6,22 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./jquery.rwdImageMaps.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             空き病床リスト
         </div>
-        <p>検索機能、inの副問い合わせで病床と
-        </p>
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <asp:DropDownList ID="DropDownList1" runat="server">
+            <asp:ListItem></asp:ListItem>
+            <asp:ListItem>北海道</asp:ListItem>
+            <asp:ListItem>青森県</asp:ListItem>
+        </asp:DropDownList>
         <div>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
             <asp:ListView ID="ListView1" runat="server" DataKeyNames="Hospitalname" DataSourceID="SqlDataSource1">
                 <AlternatingItemTemplate>
                     <tr style="">
@@ -265,5 +271,11 @@
         <asp:Button ID="Button2" runat="server" Text="管理" OnClick="Button2_Click" />
         </div>
     </form>
+    <script>
+        //jQuery('#TextBox1').change(function () {
+        //    $('#DropDownList1').select(jQuery(this).text());
+        //    return false;
+        //});
+    </script>
 </body>
 </html>

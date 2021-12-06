@@ -147,6 +147,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="jquery.rwdImageMaps.js" />
     <Content Include="List.aspx" />
     <Content Include="login.aspx" />
     <Content Include="login2.aspx" />

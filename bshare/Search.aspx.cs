@@ -23,6 +23,10 @@ namespace Bshare001
             @"AttachDbFilename=|DataDirectory|\SampleDatabase1.mdf;" +
             @"Integrated Security = True;Connect Timeout = 30";
 
+        //都道府県
+        string pref = "0";
+        //イメージマップかドロップダウンリストが選択されたとき１になる
+        int count = 0;
         [System.Web.UI.Themeable(false)]
         public virtual string GroupName
         {
@@ -30,14 +34,41 @@ namespace Bshare001
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
 
+            if (Session["type"] != null)
+            {
+                Label1.Text = Session["type"].ToString();//デバッグ
+
+                //Session["id"]からアカウントを判別
+                if (Session["type"].Equals(0))
+                {
+                    Label1.Text += "管理者[0]全てのボタンを表示";
+                }
+                else if (Session["type"].Equals(1))
+                {
+                    Label1.Text += "病院[1]管理ボタンを非表示";
+                    Button2.Visible = false;
+                }
+                else if (Session["type"].Equals(2))
+                {
+                    Label1.Text += "その他(消防)[2]全てのボタンを非表示";
+                    Button1.Visible = false;
+                    Button2.Visible = false;
+                }
+            }
         }
-
-
+        protected void TbChanged(object sender, EventArgs e)
+        {
+            count = 1;
+        }
+        protected void DdlChange(object sender, EventArgs e)
+        {
+            count = 1;
+        }
         protected void Search_button_Click(object sender, EventArgs e)
         {
-            string RadioButtonChecked = "";
+            string RadioButtonChecked;
 
             if (RadioButton1.Checked)
             {
@@ -63,39 +94,46 @@ namespace Bshare001
             {
                 RadioButtonChecked = "Bedcount";
             }
+            //一度も都道府県が選択されなければ、都道府県の絞り込みはしない
+            string sql_text = "";
+            if (count == 1)
+            {
+                pref = TextBox1.Text;
+                sql_text = "SELECT [Hospitalname],[Callnumber],[" + RadioButtonChecked + "],[Address] FROM [dbo].[Hospital] WHERE  [prefecture] = N'" + pref + "'";
+            }
+            else if (count == 0)
+            {
+                pref = DropDownList1.SelectedValue;
+                sql_text = "SELECT [Hospitalname],[Callnumber],[" + RadioButtonChecked + "],[Address] FROM [dbo].[Hospital]";
+            }
+
 
             cn.ConnectionString = cnstr; //接続文字列のセット
             cn.Open(); //接続開始
             cmd.Connection = cn; //SQLコマンドに接続を渡す
             cmd.CommandType = CommandType.Text; //文字列型で命令を渡す宣言
-
-            cmd.CommandText = "SELECT [Hospitalname],[Callnumber],[" + RadioButtonChecked + "],[Address] FROM [dbo].[Hospital] WHERE  [prefecture] = N'" + DropDownList1.SelectedValue + "' ";
+            cmd.CommandText = sql_text;
             rd = cmd.ExecuteReader(); //SQLの実行(登録)
-            
             ListBox1.Items.Clear();
             
             // 結果を表示します。
             while (rd.Read())
             {
-                //string Hospitalname = (string)reader.GetValue(0);
-                //int Callnumber = (int)reader.GetValue(1);
-                //int Bedcount = (int)reader.GetValue(2);
-                //DateTime log = (DateTime)reader.GetValue(3);
-                //string Address = (string)reader.GetValue(4);
-                //int Bedtype = (int)reader.GetValue(5);
-                //int Bedinfected = (int)reader.GetValue(6);
-                //int Bedmental = (int)reader.GetValue(7);
-                //int Bedcovid = (int)reader.GetValue(8);
-                //int Bedsevere = (int)reader.GetValue(9);
-                string Hospitalname = (string)rd.GetValue(0);
-                int Callnumber = (int)rd.GetValue(1);
-                int Bed = (int)rd.GetValue(2);
-                string Address = (string)rd.GetValue(3);
-
                 ListBox1.Items.Add(String.Format("{0},{1},{2},{3}", rd["Hospitalname"], rd["Callnumber"], rd[RadioButtonChecked], rd["Address"]));
             }
             rd.Close();
             cn.Close(); //接続終了
+
+            TextBox1.Text = "";
+        }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Registration.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Management.aspx");
         }
     }
 }

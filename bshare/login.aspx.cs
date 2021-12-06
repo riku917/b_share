@@ -35,29 +35,14 @@ namespace bshare
 
             cmd.CommandText = "SELECT [Id],[password],[type] FROM [dbo].[user] WHERE  Id = N'" + loginID.Text + "' AND password = N'" + password.Text + "'" ;
 
-            //cmd.ExecuteNonQuery(); //SQLの実行(登録)
-
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                string user_id = (string)reader.GetValue(0);
-                string user_password = (string)reader.GetValue(1);
-                string user_type = (string)reader.GetValue(2);
-                if (user_id == loginID.Text && user_password == password.Text)
-                {
-                    //ログインしたアカウントを区別してSearch画面にデータを受け渡し
-                    //userテーブルからidを取得してSession["id"]に代入してSearch画面に遷移
-                    Session["id"] = user_id;
-                    Session["type"] = user_type;
-                    Response.Redirect("~/List.aspx");
-                    //Response.Redirect("~/Search.aspx");
-                }
-                else
-                {
-                    Button1.Text = "ログイン失敗！" + user_id + user_password + user_type ;
-                }
+                Session["id"] = reader["id"];
+                Session["type"] = reader["type"];
+                Response.Redirect("~/Search.aspx");
             }
-                cn.Close(); //接続終了
+            cn.Close(); //接続終了
         }
     }
 }
