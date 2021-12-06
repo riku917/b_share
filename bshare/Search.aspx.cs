@@ -94,14 +94,14 @@ namespace Bshare001
             {
                 RadioButtonChecked = "Bedcount";
             }
-            //一度も都道府県が選択されなければ、都道府県の絞り込みはしない
+            //一度も都道府県が選択されなければ、都道府県の絞り込みはしないcount=0
             string sql_text = "";
-            if (count == 1)
+            if (count == 1)//count=1(かつ空白以外なら)
             {
                 pref = TextBox1.Text;
                 sql_text = "SELECT [Hospitalname],[Callnumber],[" + RadioButtonChecked + "],[Address] FROM [dbo].[Hospital] WHERE  [prefecture] = N'" + pref + "'";
             }
-            else if (count == 0)
+            else if (count == 0)//count=0(かつ空白なら)
             {
                 pref = DropDownList1.SelectedValue;
                 sql_text = "SELECT [Hospitalname],[Callnumber],[" + RadioButtonChecked + "],[Address] FROM [dbo].[Hospital]";
