@@ -59,9 +59,8 @@
              height:450px;
              background-color: whitesmoke;
         }
-        
-        
     </style>
+    <script type="module" src="index.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">

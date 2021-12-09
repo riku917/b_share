@@ -14,63 +14,51 @@ namespace bshare
     {
         private SqlConnection cn = new SqlConnection();
         private SqlCommand cmd = new SqlCommand();
-
         private string cnstr =
             @"Data Source = (LocalDB)\MSSQLLocalDB;" +
             @"AttachDbFilename=|DataDirectory|\SampleDatabase1.mdf;" +
             @"Integrated Security = True;Connect Timeout = 30";
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //ページ読み込みイベントでログインしている病院の情報を取得(Hospitalname:aa)
-            cn.ConnectionString = cnstr; //接続文字列のセット
-            cn.Open(); //接続開始
-            cmd.Connection = cn; //SQLコマンドに接続を渡す
-            cmd.CommandType = CommandType.Text; //文字列型で命令を渡す宣言
-
-            //cmd.CommandText = "SELECT * FROM [dbo].[Hospital] WHERE hosptal_id = " + Session["id"];
-            //cmd.CommandText = "SELECT * FROM [dbo].[Hospital] WHERE Hospitalname = '三重県立病院'";//デバッグ(結果に何も取得できないHosptalnameのデータ定義が原因か)
-            cmd.CommandText = "SELECT * FROM [dbo].[Hospital] WHERE Callnumber = 789213554";//デバッグ(成功)
-            //cmd.ExecuteNonQuery(); //SQLの実行(登録)
-            // SQLを実行します。
-            SqlDataReader reader = cmd.ExecuteReader();
-            // 結果を表示します。
-            while (reader.Read())
+            Session["type"] = 1;
+            int hospitalid = 0;
+            if(Session["type"].Equals(1))
             {
-                string Hospitalname = (string)reader.GetValue(0);
-                int Callnumber = (int)reader.GetValue(1);
-                int Bedcount = (int)reader.GetValue(2);
-                DateTime log = (DateTime)reader.GetValue(3);
-                string Address = (string)reader.GetValue(4);
-                int Bedtype = (int)reader.GetValue(5);
-                int Bedinfected = (int)reader.GetValue(6);
-                int Bedmental = (int)reader.GetValue(7);
-                int Bedcovid = (int)reader.GetValue(8);
-                int Bedsevere = (int)reader.GetValue(9);
+                cn.ConnectionString = cnstr;
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT * FROM [dbo].[user] WHERE Id = N'" + Session["id"].ToString() + "'";
+                SqlDataReader reader = cmd.ExecuteReader();
+               
+                while (reader.Read())
+                {
+                    hospitalid = (int)reader["HospitalID"];
+                }
 
-                Label5.Text = "Hospitalname:" + Hospitalname
-                    + "\nCallnumber:" + Callnumber
-                    + "\nBedcount:" + Bedcount
-                    + "\nlog" + log
-                    + "\nAddress" + Address
-                    + "\nBedtype" + Bedtype
-                    + "\nBedinfected" + Bedinfected
-                    + "\nBedmental" + Bedmental
-                    + "\nBedcovid" + Bedcovid
-                    + "\nBedsevere" + Bedsevere;//デバッグ
-                TextBox1.Text = Hospitalname;
-                TextBox2.Text = Callnumber.ToString();
-                TextBox3.Text = Bedcount.ToString();
-                TextBox4.Text = log.ToString();
-                TextBox5.Text = Address.ToString();
-                TextBox6.Text = Bedtype.ToString();
-                TextBox7.Text = Bedinfected.ToString();
-                TextBox8.Text = Bedmental.ToString();
-                TextBox9.Text = Bedcovid.ToString();
-                TextBox10.Text = Bedsevere.ToString();
+                cn.Close();
 
+                cn.Open();
+                cmd.CommandText = "SELECT * FROM [dbo].[Hospital] WHERE HospitalID = " + hospitalid;
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    TextBox1.Text = reader["Hospitalname"].ToString();
+                    TextBox2.Text = reader["Callnumber"].ToString();
+                    TextBox3.Text = reader["Bedcount"].ToString();
+                    TextBox4.Text = reader["log"].ToString();
+                    TextBox5.Text = reader["Address"].ToString();
+                    TextBox6.Text = reader["Bedtype"].ToString();
+                    TextBox7.Text = reader["Bedinfected"].ToString();
+                    TextBox8.Text = reader["Bedmental"].ToString();
+                    TextBox9.Text = reader["Bedcovid"].ToString();
+                    TextBox10.Text = reader["Bedsevere"].ToString();
+                }
+
+                cn.Close();
             }
-            cn.Close(); //接続終了
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -98,8 +86,7 @@ namespace bshare
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/List.aspx");
-            //Response.Redirect("~/Search.aspx");
+            Response.Redirect("~/Search.aspx");
         }
     }
 }

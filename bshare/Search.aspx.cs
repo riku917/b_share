@@ -34,7 +34,27 @@ namespace Bshare001
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
+            cn.ConnectionString = cnstr; //接続文字列のセット
+            cn.Open(); //接続開始
+            cmd.Connection = cn; //SQLコマンドに接続を渡す
+            cmd.CommandType = CommandType.Text; //文字列型で命令を渡す宣言
+
+            cmd.CommandText = "SELECT DISTINCT [prefecture] FROM [Hospital]";
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                string rd = reader["prefecture"].ToString();
+                ListItem selectedListItem = DropDownList1.Items.FindByValue(rd);
+
+                if (selectedListItem != null)
+                {
+                    selectedListItem.Enabled = true;
+                }
+            }
+            cn.Close(); //接続終了     
 
             if (Session["type"] != null)
             {

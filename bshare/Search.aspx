@@ -9,6 +9,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./jquery.rwdImageMaps.js"></script>
+    <script type="module" src="index.js"></script>
 </head>
 <body>
     <strong>検索画面</strong>
@@ -26,58 +27,89 @@
           </map>
             <img src="/image/prefmap2.png" usemap="#map" border="0" class="img-fluid" style="outline: rgb(34, 116, 107) solid 1px;"/>
             
-        <asp:ListBox ID="ListBox1" runat="server" DataSourceID="SqlDataSource1" DataTextField="prefecture" DataValueField="prefecture"></asp:ListBox>
+        <asp:ListBox ID="ListBox1" runat="server" DataTextField="prefecture" DataValueField="prefecture"></asp:ListBox>
             </div>
-        <asp:TextBox ID="TextBox1" runat="server" Text="" OnTextChanged="TbChanged"></asp:TextBox>
-            <%--<asp:Image ID="Image001" runat="server" ImageUrl="~/images/prefmap2.png" Height="200px" Width="200px" />--%>
-        【都道府県】<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="prefecture" DataValueField="prefecture" OnSelectedIndexChanged="DdlChange">
+        【都道府県】
+        <br />
+        <br />
+        <asp:DropDownList ID="DropDownList1" runat="server" DataTextField="prefecture" DataValueField="prefecture" OnSelectedIndexChanged="DdlChange">
+            <asp:ListItem></asp:ListItem>
+            <asp:ListItem Enabled="false">北海道</asp:ListItem>
+            
+            <asp:ListItem Enabled="false">青森県</asp:ListItem>
+            <asp:ListItem Enabled="false">岩手県</asp:ListItem>
+            <asp:ListItem Enabled="false">宮城県</asp:ListItem>
+            <asp:ListItem Enabled="false">秋田県</asp:ListItem>
+            <asp:ListItem Enabled="false">山形県</asp:ListItem>
+            <asp:ListItem Enabled="false">福島県</asp:ListItem>
+
+            <asp:ListItem Enabled="false">茨城県</asp:ListItem>
+            <asp:ListItem Enabled="false">栃木県</asp:ListItem>
+            <asp:ListItem Enabled="false">群馬県</asp:ListItem>
+            <asp:ListItem Enabled="false">埼玉県</asp:ListItem>
+            <asp:ListItem Enabled="false">千葉県</asp:ListItem>
+            <asp:ListItem Enabled="false">東京都</asp:ListItem>
+            <asp:ListItem Enabled="false">神奈川県</asp:ListItem>
+            
+            <asp:ListItem Enabled="false">新潟県</asp:ListItem>
+            <asp:ListItem Enabled="false">富山県</asp:ListItem>
+            <asp:ListItem Enabled="false">石川県</asp:ListItem>
+            <asp:ListItem Enabled="false">福井県</asp:ListItem>
+            <asp:ListItem Enabled="false">山梨県</asp:ListItem>
+            <asp:ListItem Enabled="false">長野県</asp:ListItem>
+            <asp:ListItem Enabled="false">岐阜県</asp:ListItem>
+            <asp:ListItem Enabled="false">静岡県</asp:ListItem>
+            <asp:ListItem Enabled="false">愛知県</asp:ListItem>
+            <asp:ListItem Enabled="false">三重県</asp:ListItem>
+            
+            <asp:ListItem Enabled="false">滋賀県</asp:ListItem>
+            <asp:ListItem Enabled="false">京都府</asp:ListItem>
+            <asp:ListItem Enabled="false">大阪府</asp:ListItem>
+            <asp:ListItem Enabled="false">兵庫県</asp:ListItem>
+            <asp:ListItem Enabled="false">奈良県</asp:ListItem>
+            <asp:ListItem Enabled="false">和歌山県</asp:ListItem>
+
+            <asp:ListItem Enabled="false">鳥取県</asp:ListItem>
+            <asp:ListItem Enabled="false">島根県</asp:ListItem>
+            <asp:ListItem Enabled="false">岡山県</asp:ListItem>
+            <asp:ListItem Enabled="false">広島県</asp:ListItem>
+            <asp:ListItem Enabled="false">山口県</asp:ListItem>
+            <asp:ListItem Enabled="false">徳島県</asp:ListItem>
+            <asp:ListItem Enabled="false">香川県</asp:ListItem>
+            <asp:ListItem Enabled="false">愛媛県</asp:ListItem>
+            <asp:ListItem Enabled="false">高知県</asp:ListItem>
+            
+            <asp:ListItem Enabled="false">福岡県</asp:ListItem>
+            <asp:ListItem Enabled="false">佐賀県</asp:ListItem>
+            <asp:ListItem Enabled="false">長崎県</asp:ListItem>
+            <asp:ListItem Enabled="false">熊本県</asp:ListItem>
+            <asp:ListItem Enabled="false">大分県</asp:ListItem>
+            <asp:ListItem Enabled="false">宮崎県</asp:ListItem>
+            <asp:ListItem Enabled="false">鹿児島県</asp:ListItem>
+            <asp:ListItem Enabled="false">沖縄県</asp:ListItem>
+
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DISTINCT [prefecture] FROM [Hospital]"></asp:SqlDataSource>
+        <br />
+        <asp:TextBox ID="TextBox1" runat="server" Text="" OnTextChanged="TbChanged"></asp:TextBox>
         <br />
         <br />
         ●病床選択
         <br />
         <br />
         <asp:Panel ID="Panel1" runat="server">
-
         <asp:RadioButton ID="RadioButton1" text="一般病床" runat="server" GroupName="Groupbed"/>　　
         <asp:RadioButton ID="RadioButton2" text="感染者病床" runat="server" BorderColor="#FF6600" GroupName="Groupbed"/>
         <asp:RadioButton ID="RadioButton3" text="精神病床" runat="server"  GroupName="Groupbed"/>
          </asp:Panel>
         <asp:Panel ID="Panel2" runat="server">
-
         <asp:RadioButton ID="RadioButton4" text="コロナ病床" runat="server" BorderColor="#FF6600" GroupName="Groupbed"/>
         <asp:RadioButton ID="RadioButton5" text="重症病床" runat="server"  GroupName="Groupbed"/>
-         </asp:Panel>
-
+        </asp:Panel>
         <br />
-
         <br />
-
         <input type="button" name="name" value="戻る" onclick="history.back()" />
         <asp:Button ID="Search_button" runat="server" Text="検索" OnClick="Search_button_Click"  />
-      
-
-        <asp:DataList ID="DataList1" runat="server" DataKeyField="Hospitalname" DataSourceID="SqlDataSource2">
-            <ItemTemplate>
-                Hospitalname:
-                <asp:Label ID="HospitalnameLabel" runat="server" Text='<%# Eval("Hospitalname") %>' />
-                <br />
-                Callnumber:
-                <asp:Label ID="CallnumberLabel" runat="server" Text='<%# Eval("Callnumber") %>' />
-                <br />
-                Bedcount:
-                <asp:Label ID="BedcountLabel" runat="server" Text='<%# Eval("Bedcount") %>' />
-                <br />
-                Address:
-                <asp:Label ID="AddressLabel" runat="server" Text='<%# Eval("Address") %>' />
-                <br />
-                <br />
-            </ItemTemplate>
-        </asp:DataList>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Hospitalname], [Callnumber], [Bedcount], [Address] FROM [Hospital]"></asp:SqlDataSource>
-
-        
+        <br />
         <asp:Button ID="Button1" runat="server" Text="更新" OnClick="Button1_Click" />
         <asp:Button ID="Button2" runat="server" Text="管理" OnClick="Button2_Click" />
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label><%-- デバッグ用 --%>
@@ -86,6 +118,7 @@
         jQuery('.image-pref').on('click', function () {
             var pref = jQuery(this).attr('title');
             $('#TextBox1').val(pref);
+            $('#DropDownList1').val(pref);
             return false;
         });
         jQuery('#DropDownList1').change(function () {

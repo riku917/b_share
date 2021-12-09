@@ -33,12 +33,12 @@ namespace bshare
             cmd.Connection = cn; //SQLコマンドに接続を渡す
             cmd.CommandType = CommandType.Text; //文字列型で命令を渡す宣言
 
-            cmd.CommandText = "SELECT [Id],[password],[type] FROM [dbo].[user] WHERE  Id = N'" + loginID.Text + "' AND password = N'" + password.Text + "'" ;
+            cmd.CommandText = "SELECT [Id],[type] FROM [dbo].[user] WHERE  Id = N'" + loginID.Text + "' AND password = N'" + password.Text + "'" ;
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                Session["id"] = reader["id"];
+                Session["id"] = reader["Id"];
                 Session["type"] = reader["type"];
                 Response.Redirect("~/Search.aspx");
             }

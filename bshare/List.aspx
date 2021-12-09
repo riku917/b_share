@@ -8,6 +8,7 @@
     <title></title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./jquery.rwdImageMaps.js"></script>
+    <script type="module" src="index.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -17,8 +18,8 @@
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <asp:DropDownList ID="DropDownList1" runat="server">
             <asp:ListItem></asp:ListItem>
-            <asp:ListItem>北海道</asp:ListItem>
-            <asp:ListItem>青森県</asp:ListItem>
+            <asp:ListItem Enabled="false">北海道</asp:ListItem>
+            <asp:ListItem Enabled="false">青森県</asp:ListItem>
         </asp:DropDownList>
         <div>
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>

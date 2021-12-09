@@ -37,7 +37,7 @@ namespace bshare
                 
                 if (selectedListItem != null)
                 {
-                    selectedListItem.Enabled = false;
+                    selectedListItem.Enabled = true;
                 }
             }
             cn.Close(); //接続終了
