@@ -9,7 +9,11 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./jquery.rwdImageMaps.js"></script>
-    <script type="module" src="index.js"></script>
+    <style>
+        .image-pref{
+            cursor:pointer
+        }
+    </style>
 </head>
 <body>
     <strong>検索画面</strong>
@@ -18,12 +22,58 @@
         <div>
             <map name="map">
                 <area shape="rect" coords="367, 18, 579, 166" title="北海道" class="image-pref"/>
+
                 <area shape="rect" coords="379, 166, 454, 205" title="青森県" class="image-pref"/>
                 <area shape="rect" coords="422, 211, 458, 265" title="岩手県" class="image-pref"/>
                 <area shape="rect" coords="407, 271, 448, 310" title="宮城県" class="image-pref"/>
                 <area shape="rect" coords="387, 206, 423, 253" title="秋田県" class="image-pref"/>
                 <area shape="rect" coords="371, 258, 407, 301" title="山形県" class="image-pref"/>
                 <area shape="rect" coords="369, 305, 420, 337" title="福島県" class="image-pref"/>
+                
+                <area shape="rect" coords="385,351,428,375" title="茨城県" class="image-pref"/>
+                <area shape="rect" coords="363,331,400,354" title="栃木県" class="image-pref"/>
+                <area shape="rect" coords="342,331,365,360" title="群馬県" class="image-pref"/>
+                <area shape="rect" coords="343,354,379,374" title="埼玉県" class="image-pref"/>
+                <area shape="rect" coords="389,385,428,408" title="千葉県" class="image-pref"/>
+                <area shape="rect" coords="353,373,391,393" title="東京都" class="image-pref"/>
+                <area shape="rect" coords="338,390,388,410" title="神奈川県" class="image-pref"/>
+
+                <area shape="rect" coords="319,275,368,325" title="新潟県" class="image-pref"/>
+                <area shape="rect" coords="289,321,326,342" title="富山県" class="image-pref"/>
+                <area shape="rect" coords="256,312,292,337" title="石川県" class="image-pref"/>
+                <area shape="rect" coords="236,336,273,360" title="福井県" class="image-pref"/>
+                <area shape="rect" coords="313,369,348,388" title="山梨県" class="image-pref"/>
+                <area shape="rect" coords="306,346,338,370" title="長野県" class="image-pref"/>
+                <area shape="rect" coords="276,350,303,388" title="岐阜県" class="image-pref"/>
+                <area shape="rect" coords="303,393,338,420" title="静岡県" class="image-pref"/>
+                <area shape="rect" coords="271,386,306,413" title="愛知県" class="image-pref"/>
+                <area shape="rect" coords="258,410,293,435" title="三重県" class="image-pref"/>
+
+                <area shape="rect" coords="236,378,270,398" title="滋賀県" class="image-pref"/>
+                <area shape="rect" coords="213,359,248,379" title="京都府" class="image-pref"/>
+                <area shape="rect" coords="219,393,260,411" title="大阪府" class="image-pref"/>
+                <area shape="rect" coords="200,376,235,395" title="兵庫県" class="image-pref"/>
+                <area shape="rect" coords="226,411,263,430" title="奈良県" class="image-pref"/>
+                <area shape="rect" coords="205,435,255,459" title="和歌山県" class="image-pref"/>
+
+                <area shape="rect" coords="174,346,210,370" title="鳥取県" class="image-pref"/>
+                <area shape="rect" coords="128,354,169,375" title="島根県" class="image-pref"/>
+                <area shape="rect" coords="170,375,200,398" title="岡山県" class="image-pref"/>
+                <area shape="rect" coords="139,380,171,404" title="広島県" class="image-pref"/>
+                <area shape="rect" coords="93,391,129,414" title="山口県" class="image-pref"/>
+                <area shape="rect" coords="182,421,219,439" title="徳島県" class="image-pref"/>
+                <area shape="rect" coords="176,399,213,422" title="香川県" class="image-pref"/>
+                <area shape="rect" coords="133,404,174,428" title="愛媛県" class="image-pref"/>
+                <area shape="rect" coords="138,429,185,453" title="高知県" class="image-pref"/>
+
+                <area shape="rect" coords="56,393,95,415" title="福岡県" class="image-pref"/>
+                <area shape="rect" coords="26,403,61,425" title="佐賀県" class="image-pref"/>
+                <area shape="rect" coords="5,430,50,454" title="長崎県" class="image-pref"/>
+                <area shape="rect" coords="50,440,85,470" title="熊本県" class="image-pref"/>
+                <area shape="rect" coords="91,420,126,446" title="大分県" class="image-pref"/>
+                <area shape="rect" coords="85,460,119,489" title="宮崎県" class="image-pref"/>
+                <area shape="rect" coords="20,478,80,550" title="鹿児島県" class="image-pref"/>
+                <area shape="rect" coords="290,490,520,570" title="沖縄県" class="image-pref"/>
           </map>
             <img src="/image/prefmap2.png" usemap="#map" border="0" class="img-fluid" style="outline: rgb(34, 116, 107) solid 1px;"/>
             
@@ -121,6 +171,7 @@
             $('#DropDownList1').val(pref);
             return false;
         });
+
         jQuery('#DropDownList1').change(function () {
             $('#TextBox1').val(jQuery(this).val());
             return false;

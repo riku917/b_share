@@ -21,7 +21,6 @@ namespace bshare
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["type"] = 1;
             int hospitalid = 0;
             if(Session["type"].Equals(1))
             {
@@ -36,7 +35,6 @@ namespace bshare
                 {
                     hospitalid = (int)reader["HospitalID"];
                 }
-
                 cn.Close();
 
                 cn.Open();
@@ -56,7 +54,6 @@ namespace bshare
                     TextBox9.Text = reader["Bedcovid"].ToString();
                     TextBox10.Text = reader["Bedsevere"].ToString();
                 }
-
                 cn.Close();
             }
         }

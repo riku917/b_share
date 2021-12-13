@@ -434,9 +434,6 @@
         </asp:SqlDataSource>
             <asp:Button ID="Button1" runat="server" Text="戻る" OnClick="Button1_Click" />
         <br />
-        掲示板
-        <p>データベースに掲示板のテーブルを作る</p>
-        <asp:ListView ID="ListView3" runat="server"></asp:ListView>
     </form>
 </body>
 </html>
