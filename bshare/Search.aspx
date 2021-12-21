@@ -16,6 +16,8 @@
     </style>
 </head>
 <body>
+
+    <div id="map-container"></div>
     <strong>検索画面</strong>
     <form id="form1" runat="server">
         <br />
@@ -177,5 +179,6 @@
             return false;
         });
     </script>
+
 </body>
 </html>

@@ -18,70 +18,108 @@ namespace bshare
             @"Data Source = (LocalDB)\MSSQLLocalDB;" +
             @"AttachDbFilename=|DataDirectory|\SampleDatabase1.mdf;" +
             @"Integrated Security = True;Connect Timeout = 30";
-
+        SqlDataReader reader;
+        string update_col = "";
+        string update_str = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             int hospitalid = 0;
-            if(Session["type"].Equals(1))
+            /*-------*/
+            Session["type"] = 1;//デバッグ用
+            Session["id"] = "ab";//デバッグ用
+            /*-------*/
+            if (!IsPostBack)
             {
-                cn.ConnectionString = cnstr;
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SELECT * FROM [dbo].[user] WHERE Id = N'" + Session["id"].ToString() + "'";
-                SqlDataReader reader = cmd.ExecuteReader();
-               
-                while (reader.Read())
+                if (Session["type"].Equals(1))
                 {
-                    hospitalid = (int)reader["HospitalID"];
-                }
-                cn.Close();
+                    cn.ConnectionString = cnstr;
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "SELECT * FROM [dbo].[user] WHERE Id = N'" + Session["id"].ToString() + "'";
+                    reader = cmd.ExecuteReader();
 
-                cn.Open();
-                cmd.CommandText = "SELECT * FROM [dbo].[Hospital] WHERE HospitalID = " + hospitalid;
-                reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        hospitalid = (int)reader["HospitalID"];
+                    }
+                    cn.Close();
 
-                while (reader.Read())
-                {
-                    TextBox1.Text = reader["Hospitalname"].ToString();
-                    TextBox2.Text = reader["Callnumber"].ToString();
-                    TextBox3.Text = reader["Bedcount"].ToString();
-                    TextBox4.Text = reader["log"].ToString();
-                    TextBox5.Text = reader["Address"].ToString();
-                    TextBox6.Text = reader["Bedtype"].ToString();
-                    TextBox7.Text = reader["Bedinfected"].ToString();
-                    TextBox8.Text = reader["Bedmental"].ToString();
-                    TextBox9.Text = reader["Bedcovid"].ToString();
-                    TextBox10.Text = reader["Bedsevere"].ToString();
+                    cn.Open();
+                    cmd.CommandText = "SELECT * FROM [dbo].[Hospital] WHERE HospitalID = " + hospitalid;
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Label1.Text = reader["Hospitalname"].ToString();
+                        TextBox3.Text = reader["Bedcount"].ToString();
+                        TextBox6.Text = reader["Bedtype"].ToString();
+                        TextBox7.Text = reader["Bedinfected"].ToString();
+                        TextBox8.Text = reader["Bedmental"].ToString();
+                        TextBox9.Text = reader["Bedcovid"].ToString();
+                        TextBox10.Text = reader["Bedsevere"].ToString();
+                    }
+                    cn.Close();
                 }
-                cn.Close();
             }
         }
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-            DateTime dt = DateTime.Now;
-            string dt_str = DateTime.Now.ToString("yyyy/MM.dd HH:mm:ss");
-
-            cn.ConnectionString = cnstr; //接続文字列のセット
-            cn.Open(); //接続開始
-            cmd.Connection = cn; //SQLコマンドに接続を渡す
-            cmd.CommandType = CommandType.Text; //文字列型で命令を渡す宣言
-
-            cmd.CommandText = "INSERT INTO [dbo].[Hospital] (Hospitalname,Callllnumber,Bedcount,log)VALUES(N'"
-                + TextBox1.Text + "'," + TextBox2.Text + "," + TextBox3.Text + ",N'" + dt+"')";
-
-            cmd.ExecuteNonQuery(); //SQLの実行(登録)
-            cn.Close(); //接続終了
-
-            Label1.Text = TextBox1.Text;
-            Label2.Text = TextBox2.Text;
-            Label3.Text = TextBox3.Text;
-            Label4.Text = dt_str;
-
+            update_col = "Bedcount";
+            update_str = TextBox3.Text;
+            Button_Click();
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            update_col = "Bedtype";
+            update_str = TextBox6.Text;
+            Button_Click();
+        }
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            update_col = "Bedinfected";
+            update_str = TextBox7.Text;
+            Button_Click();
+        }
+
+        protected void Button8_Click(object sender, EventArgs e)
+        {
+            update_col = "Bedmental";
+            update_str = TextBox8.Text;
+            Button_Click();
+        }
+
+        protected void Button9_Click(object sender, EventArgs e)
+        {
+            update_col = "Bedcovid";
+            update_str = TextBox9.Text;
+            Button_Click();
+        }
+
+        protected void Button10_Click(object sender, EventArgs e)
+        {
+            update_col = "Bedsevere";
+            update_str = TextBox10.Text;
+            Button_Click();
+        }
+
+        protected void Button_Click()
+        {
+            string dt_str = DateTime.Now.ToString("yyyy/MM.dd HH:mm:ss");
+            cn.ConnectionString = cnstr;
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "UPDATE [dbo].[Hospital] SET " + update_col + " = " + int.Parse(update_str) + ",log = N'" + dt_str + "' WHERE Hospitalname = N'" + Label1.Text + "'";
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
+
+        protected void Button0_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Search.aspx");
         }

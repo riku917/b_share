@@ -32,6 +32,9 @@
                     <td>
                         <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
                     </td>
+                    <td>
+                        <asp:Label ID="HospitalIDLabel" runat="server" Text='<%# Eval("HospitalID") %>' />
+                    </td>
                 </tr>
             </AlternatingItemTemplate>
             <EditItemTemplate>
@@ -48,6 +51,9 @@
                     </td>
                     <td>
                         <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="HospitalIDTextBox" runat="server" Text='<%# Bind("HospitalID") %>' />
                     </td>
                 </tr>
             </EditItemTemplate>
@@ -73,6 +79,9 @@
                     <td>
                         <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
                     </td>
+                    <td>
+                        <asp:TextBox ID="HospitalIDTextBox" runat="server" Text='<%# Bind("HospitalID") %>' />
+                    </td>
                 </tr>
             </InsertItemTemplate>
             <ItemTemplate>
@@ -90,6 +99,9 @@
                     <td>
                         <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
                     </td>
+                    <td>
+                        <asp:Label ID="HospitalIDLabel" runat="server" Text='<%# Eval("HospitalID") %>' />
+                    </td>
                 </tr>
             </ItemTemplate>
             <LayoutTemplate>
@@ -102,6 +114,7 @@
                                     <th runat="server">Id</th>
                                     <th runat="server">password</th>
                                     <th runat="server">type</th>
+                                    <th runat="server">HospitalID</th>
                                 </tr>
                                 <tr id="itemPlaceholder" runat="server">
                                 </tr>
@@ -135,6 +148,9 @@
                     </td>
                     <td>
                         <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="HospitalIDLabel" runat="server" Text='<%# Eval("HospitalID") %>' />
                     </td>
                 </tr>
             </SelectedItemTemplate>
@@ -192,6 +208,12 @@
                     <td>
                         <asp:Label ID="BedsevereLabel" runat="server" Text='<%# Eval("Bedsevere") %>' />
                     </td>
+                    <td>
+                        <asp:Label ID="HospitalIDLabel" runat="server" Text='<%# Eval("HospitalID") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="prefectureLabel" runat="server" Text='<%# Eval("prefecture") %>' />
+                    </td>
                 </tr>
             </AlternatingItemTemplate>
             <EditItemTemplate>
@@ -229,6 +251,12 @@
                     </td>
                     <td>
                         <asp:TextBox ID="BedsevereTextBox" runat="server" Text='<%# Bind("Bedsevere") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="HospitalIDTextBox" runat="server" Text='<%# Bind("HospitalID") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="prefectureTextBox" runat="server" Text='<%# Bind("prefecture") %>' />
                     </td>
                 </tr>
             </EditItemTemplate>
@@ -275,6 +303,12 @@
                     <td>
                         <asp:TextBox ID="BedsevereTextBox" runat="server" Text='<%# Bind("Bedsevere") %>' />
                     </td>
+                    <td>
+                        <asp:TextBox ID="HospitalIDTextBox" runat="server" Text='<%# Bind("HospitalID") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="prefectureTextBox" runat="server" Text='<%# Bind("prefecture") %>' />
+                    </td>
                 </tr>
             </InsertItemTemplate>
             <ItemTemplate>
@@ -313,6 +347,12 @@
                     <td>
                         <asp:Label ID="BedsevereLabel" runat="server" Text='<%# Eval("Bedsevere") %>' />
                     </td>
+                    <td>
+                        <asp:Label ID="HospitalIDLabel" runat="server" Text='<%# Eval("HospitalID") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="prefectureLabel" runat="server" Text='<%# Eval("prefecture") %>' />
+                    </td>
                 </tr>
             </ItemTemplate>
             <LayoutTemplate>
@@ -332,6 +372,8 @@
                                     <th runat="server">Bedmental</th>
                                     <th runat="server">Bedcovid</th>
                                     <th runat="server">Bedsevere</th>
+                                    <th runat="server">HospitalID</th>
+                                    <th runat="server">prefecture</th>
                                 </tr>
                                 <tr id="itemPlaceholder" runat="server">
                                 </tr>
@@ -342,7 +384,9 @@
                         <td runat="server" style="">
                             <asp:DataPager ID="DataPager1" runat="server">
                                 <Fields>
-                                    <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
+                                    <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                    <asp:NumericPagerField />
+                                    <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
                                 </Fields>
                             </asp:DataPager>
                         </td>
@@ -384,6 +428,12 @@
                     </td>
                     <td>
                         <asp:Label ID="BedsevereLabel" runat="server" Text='<%# Eval("Bedsevere") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="HospitalIDLabel" runat="server" Text='<%# Eval("HospitalID") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="prefectureLabel" runat="server" Text='<%# Eval("prefecture") %>' />
                     </td>
                 </tr>
             </SelectedItemTemplate>

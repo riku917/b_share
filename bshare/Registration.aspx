@@ -12,57 +12,40 @@
     <form id="form1" runat="server">
         <div>
             <h1>
-                登録・更新
+                更新
             </h1>
         </div>
-        <asp:Label ID="Label5" runat="server" Text="デバッグラベル"></asp:Label>
-        <br />
         <div>
             病院名
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Label ID="Label1" runat="server" Text="病院名"></asp:Label>
             <br />
-            電話番号
-            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:Label ID="Label3" runat="server" Text="空き病床"></asp:Label>
+            <asp:TextBox ID="TextBox3" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:Button ID="Button3" runat="server" Text="更新" OnClick="Button3_Click"/>
             <br />
-            空き病床数
-            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <asp:Label ID="Label6" runat="server" Text="一般病床"></asp:Label>
+            <asp:TextBox ID="TextBox6" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:Button ID="Button6" runat="server" Text="更新" OnClick="Button6_Click"/>
             <br />
-            log
-            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+            <asp:Label ID="Label7" runat="server" Text="感染者病床"></asp:Label>
+            <asp:TextBox ID="TextBox7" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:Button ID="Button7" runat="server" Text="更新" OnClick="Button7_Click"/>
             <br />
-            住所
-            <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+            <asp:Label ID="Label8" runat="server" Text="精神病床"></asp:Label>
+            <asp:TextBox ID="TextBox8" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:Button ID="Button8" runat="server" Text="更新" OnClick="Button8_Click"/>
             <br />
-            一般病床
-            <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+            <asp:Label ID="Label9" runat="server" Text="コロナ病床"></asp:Label>
+            <asp:TextBox ID="TextBox9" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:Button ID="Button9" runat="server" Text="更新" OnClick="Button9_Click"/>
             <br />
-            感染者病床
-            <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
-            <br />
-            精神病床
-            <asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
-            <br />
-            コロナ病床
-            <asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
-            <br />
-            重症病床
-            <asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
-            <br />
+            <asp:Label ID="Label10" runat="server" Text="重症病床"></asp:Label>
+            <asp:TextBox ID="TextBox10" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:Button ID="Button10" runat="server" Text="更新" OnClick="Button10_Click"/>
         </div>
         <br />
         <div>
-            <asp:Button ID="Button3" runat="server" Text="登録" OnClick="Button3_Click" />
-        </div>
-        <br />
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-        <br />
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-        <br />
-        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-        <br />
-        <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-        <div>
-            <asp:Button ID="Button1" runat="server" Text="戻る" OnClick="Button1_Click" />
+            <asp:Button ID="Button0" runat="server" Text="戻る" OnClick="Button0_Click" />
         </div>
     </form>
 </body>
