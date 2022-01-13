@@ -7,16 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace bshare
 {
-    public partial class Management : System.Web.UI.Page
+    //public partial class _Default : Page
+    public partial class Default0 : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Search.aspx");
         }
     }
 }

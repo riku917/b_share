@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>検索画面</title>
@@ -10,18 +10,73 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./jquery.rwdImageMaps.js"></script>
     <style>
+        body {
+            background-color:whitesmoke;
+        }
         .image-pref{
             cursor:pointer
+        }
+        h1 {
+            background: #1B73BA;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            font-size: 30px;
+            /*margin-bottom: 30px;*/
+            padding: 5px;
+            position: relative;
+            width: 100%;
+        }
+        .boxtitle {
+            margin:auto;
+            width:700px;
+        }
+        .box {
+            text-align:center;
+            margin:auto;
+            width:700px;
+            /*margin-left:30px;*/
+            background-color:white;
+        }
+        .mapbox {
+            /*border-bottom:solid 2px;*/
+            
+        }
+        .box1 {
+            text-align:left;
+            border:  solid  3px  #1b7c26;
+            padding-left:20px;
+        }
+        .ragio {
+            width:510px;
+            /*background-color:white;*/
+            margin-left:20px;
+            border:  solid  2px  #d3d3d3;
+            
+        }
+        .buttonSearch {
+            width:300px;
+            height:30px;
+        }
+        .buttonSearch:hover{
+            background-color:darkgray;
+        }
+        .buttonback:hover {
+            background-color:darkgray;
         }
     </style>
 </head>
 <body>
-
     <div id="map-container"></div>
-    <strong>検索画面</strong>
+    <div class="boxtitle">
+        
+    </div>
+    
     <form id="form1" runat="server">
-        <br />
-        <div>
+     
+        <div class="box">
+        
+        <div class="mapbox">
+            <h1>検索画面</h1>
             <map name="map">
                 <area shape="rect" coords="367, 18, 579, 166" title="北海道" class="image-pref"/>
 
@@ -81,9 +136,9 @@
             
         <asp:ListBox ID="ListBox1" runat="server" DataTextField="prefecture" DataValueField="prefecture"></asp:ListBox>
             </div>
+            <br />
+        <div class="box1">
         【都道府県】
-        <br />
-        <br />
         <asp:DropDownList ID="DropDownList1" runat="server" DataTextField="prefecture" DataValueField="prefecture" OnSelectedIndexChanged="DdlChange">
             <asp:ListItem></asp:ListItem>
             <asp:ListItem Enabled="false">北海道</asp:ListItem>
@@ -147,24 +202,33 @@
         <br />
         ●病床選択
         <br />
-        <br />
+        <div class="ragio">
         <asp:Panel ID="Panel1" runat="server">
         <asp:RadioButton ID="RadioButton1" text="一般病床" runat="server" GroupName="Groupbed"/>　　
         <asp:RadioButton ID="RadioButton2" text="感染者病床" runat="server" BorderColor="#FF6600" GroupName="Groupbed"/>
         <asp:RadioButton ID="RadioButton3" text="精神病床" runat="server"  GroupName="Groupbed"/>
-         </asp:Panel>
-        <asp:Panel ID="Panel2" runat="server">
+        <br />
         <asp:RadioButton ID="RadioButton4" text="コロナ病床" runat="server" BorderColor="#FF6600" GroupName="Groupbed"/>
         <asp:RadioButton ID="RadioButton5" text="重症病床" runat="server"  GroupName="Groupbed"/>
         </asp:Panel>
+        </div>
         <br />
         <br />
-        <input type="button" name="name" value="戻る" onclick="history.back()" />
-        <asp:Button ID="Search_button" runat="server" Text="検索" OnClick="Search_button_Click"  />
-        <br />
+        <%--<input type="button" name="name" value="戻る" onclick="history.back()" class="buttonback" />--%>
+            <br />
         <asp:Button ID="Button1" runat="server" Text="更新" OnClick="Button1_Click" />
         <asp:Button ID="Button2" runat="server" Text="管理" OnClick="Button2_Click" />
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label><%-- デバッグ用 --%>
+        </div>
+            <br />
+        <asp:Button ID="Search_button" runat="server" Text="検索" OnClick="Search_button_Click"  CssClass="buttonSearch" />
+        </div>
+        <br />
+        <br />
+        
+        
+
+        <br />
+        
     </form>
     <script>jQuery('img[usemap]').rwdImageMaps();
         jQuery('.image-pref').on('click', function () {

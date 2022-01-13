@@ -1,42 +1,96 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="bshare._Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="bshare.login" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<!DOCTYPE html>
 
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
+<html xmlns="http://www.w3.org/1999/xhtml"lang="ja">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>ログイン</title>
+    <style>
+        .body1{
+            background-color: red;
+        }
+        .labeltitle {
+            width:550px;
+            height:55px;
+            background-color:teal;
+            margin : 0 auto;
+        }
+        
+        .title{
+            line-height: 55px;
+            padding: 20px;
+        }
+        
+        .kiso {
+            padding-top: 10px;
+            text-align: center;
+        }
+        /*ユーザID パスワードのラベルの位置*/
+        .label {
+             padding-left:15px;
+             
+        }
+        /*テキストボックスの大きさと形*/
+        .textbox {
+            width:500px;
+            height:30px;
+            border-radius:10px;
+        }
+        /*ボタンの色と大きさ*/
+        .button {
+             background-color:teal;
+             width:500px;
+             height:40px;
+        }
+        /*ボタンの位置*/
+        .buttondiv {
+            padding-top: 50px;
+            text-align: center;
+        }
+        /*ボタン色*/
+        .button:hover {
+            background-color: darkslategray;
+        }
+         /*背景の色と大きさ*/
+        .back {
+             margin : 0 auto;
+             width:550px;
+             height:450px;
+             background-color: whitesmoke;
+        }
+    </style>
+    <script type="module" src="index.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="body1">
+        <div class="back">
+        <div class="labeltitle">
+            <asp:Label ID="Label2" runat="server" Text="Bシェア :  ログイン" Font-Size="40px" ForeColor="White" CssClass="title" ></asp:Label>
         </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
+        
+        <br />
+        <div class="label">
+            <asp:Label ID="Label1" runat="server" Text="ユーザID"  CssClass="label" Font-Size="30px"></asp:Label>
         </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
+        <div class="kiso">
+            <asp:TextBox ID="loginID" runat="server" CssClass="textbox"></asp:TextBox>
         </div>
-    </div>
+        <br />
+        <div class="label">
+            <asp:Label ID="Label3" runat="server" Text="パスワード" CssClass="label" Font-Size="30px"></asp:Label>
+        </div>
+        <div class="kiso">
+            <asp:TextBox ID="password" runat="server" TextMode="Password" CssClass="textbox"></asp:TextBox>
+        </div>
+        <br />
+       <div class="buttondiv">
+           <asp:Button ID="Button1" runat="server" Text="ログイン" OnClick="Button1_Click" CssClass="button" ForeColor="White"  />
+       </div>
+       </div>
+        </div>
+    </form>
+</body>
+</html>
 
-</asp:Content>

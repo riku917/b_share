@@ -8,60 +8,68 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 
+
 namespace bshare
 {
     public partial class Registration : System.Web.UI.Page
     {
-        private SqlConnection cn = new SqlConnection();
-        private SqlCommand cmd = new SqlCommand();
-        private string cnstr =
-            @"Data Source = (LocalDB)\MSSQLLocalDB;" +
-            @"AttachDbFilename=|DataDirectory|\SampleDatabase1.mdf;" +
-            @"Integrated Security = True;Connect Timeout = 30";
-        SqlDataReader reader;
+        //Azure SQL DataBase
+        private SqlConnection cn_b = new SqlConnection();
+        private SqlCommand cmd_b = new SqlCommand();
+        private string cnstr_b =
+            @"Server=tcp:bsharedbserver.database.windows.net,1433;" +
+            @"Initial Catalog = bshare_db;" +
+            @"Persist Security Info=False;" +
+            @"User ID = bshare_db;" +
+            @"Password=Pa$$w0rd;" +
+            @"MultipleActiveResultSets=False;" +
+            @"Encrypt=True;" +
+            @"TrustServerCertificate=False;" +
+            @"Connection Timeout = 30";
+        SqlDataReader reader_b;
         string update_col = "";
         string update_str = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int hospitalid = 0;
             /*-------*/
-            Session["type"] = 1;//デバッグ用
-            Session["id"] = "ab";//デバッグ用
+            //Session["type"] = 1;//デバッグ用
+            //Session["id"] = "ab";//デバッグ用
             /*-------*/
             if (!IsPostBack)
             {
                 if (Session["type"].Equals(1))
                 {
-                    cn.ConnectionString = cnstr;
-                    cn.Open();
-                    cmd.Connection = cn;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "SELECT * FROM [dbo].[user] WHERE Id = N'" + Session["id"].ToString() + "'";
-                    reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
+                    //Azure SQL DataBase
+                    cn_b.ConnectionString = cnstr_b;
+                    cn_b.Open();
+                    cmd_b.Connection = cn_b;
+                    cmd_b.CommandType = CommandType.Text;
+                    cmd_b.CommandText = "SELECT * FROM [dbo].[user] WHERE Id = N'" + Session["id"].ToString() + "'";
+                    reader_b = cmd_b.ExecuteReader();
+                    while (reader_b.Read())
                     {
-                        hospitalid = (int)reader["HospitalID"];
+                        hospitalid = (int)reader_b["HospitalID"];
                     }
-                    cn.Close();
-
-                    cn.Open();
-                    cmd.CommandText = "SELECT * FROM [dbo].[Hospital] WHERE HospitalID = " + hospitalid;
-                    reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
+                    cn_b.Close();
+                    cn_b.Open();
+                    cmd_b.CommandText = "SELECT * FROM [dbo].[Hospital] WHERE HospitalID = " + hospitalid;
+                    reader_b = cmd_b.ExecuteReader();
+                    while (reader_b.Read())
                     {
-                        Label1.Text = reader["Hospitalname"].ToString();
-                        TextBox3.Text = reader["Bedcount"].ToString();
-                        TextBox6.Text = reader["Bedtype"].ToString();
-                        TextBox7.Text = reader["Bedinfected"].ToString();
-                        TextBox8.Text = reader["Bedmental"].ToString();
-                        TextBox9.Text = reader["Bedcovid"].ToString();
-                        TextBox10.Text = reader["Bedsevere"].ToString();
+                        Label1.Text = reader_b["Hospitalname"].ToString();
+                        TextBox3.Text = reader_b["Bedcount"].ToString();
+                        TextBox6.Text = reader_b["Bedtype"].ToString();
+                        TextBox7.Text = reader_b["Bedinfected"].ToString();
+                        TextBox8.Text = reader_b["Bedmental"].ToString();
+                        TextBox9.Text = reader_b["Bedcovid"].ToString();
+                        TextBox10.Text = reader_b["Bedsevere"].ToString();
                     }
-                    cn.Close();
+                    cn_b.Close();
                 }
             }
+
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -110,13 +118,13 @@ namespace bshare
         protected void Button_Click()
         {
             string dt_str = DateTime.Now.ToString("yyyy/MM.dd HH:mm:ss");
-            cn.ConnectionString = cnstr;
-            cn.Open();
-            cmd.Connection = cn;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "UPDATE [dbo].[Hospital] SET " + update_col + " = " + int.Parse(update_str) + ",log = N'" + dt_str + "' WHERE Hospitalname = N'" + Label1.Text + "'";
-            cmd.ExecuteNonQuery();
-            cn.Close();
+            cn_b.ConnectionString = cnstr_b;
+            cn_b.Open();
+            cmd_b.Connection = cn_b;
+            cmd_b.CommandType = CommandType.Text;
+            cmd_b.CommandText = "UPDATE [dbo].[Hospital] SET " + update_col + " = " + int.Parse(update_str) + ",log = N'" + dt_str + "' WHERE Hospitalname = N'" + Label1.Text + "'";
+            cmd_b.ExecuteNonQuery();
+            cn_b.Close();
         }
 
         protected void Button0_Click(object sender, EventArgs e)

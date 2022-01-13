@@ -87,15 +87,6 @@ namespace Bshare001
         protected global::System.Web.UI.WebControls.RadioButton RadioButton3;
 
         /// <summary>
-        /// Panel2 コントロール。
-        /// </summary>
-        /// <remarks>
-        /// 自動生成されたフィールド。
-        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
-
-        /// <summary>
         /// RadioButton4 コントロール。
         /// </summary>
         /// <remarks>
@@ -112,15 +103,6 @@ namespace Bshare001
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton RadioButton5;
-
-        /// <summary>
-        /// Search_button コントロール。
-        /// </summary>
-        /// <remarks>
-        /// 自動生成されたフィールド。
-        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Search_button;
 
         /// <summary>
         /// Button1 コントロール。
@@ -141,12 +123,12 @@ namespace Bshare001
         protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// Label1 コントロール。
+        /// Search_button コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Button Search_button;
     }
 }

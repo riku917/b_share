@@ -14,14 +14,20 @@ namespace Bshare001
 {
     public partial class Search : System.Web.UI.Page
     {
-        private SqlConnection cn = new SqlConnection();
-        private SqlCommand cmd = new SqlCommand();
-        private SqlDataReader rd;
-
-        private string cnstr =
-            @"Data Source = (LocalDB)\MSSQLLocalDB;" +
-            @"AttachDbFilename=|DataDirectory|\SampleDatabase1.mdf;" +
-            @"Integrated Security = True;Connect Timeout = 30";
+        //Azure SQL DataBase
+        private SqlConnection cn_b = new SqlConnection();
+        private SqlCommand cmd_b = new SqlCommand();
+        private string cnstr_b =
+            @"Server=tcp:bsharedbserver.database.windows.net,1433;" +
+            @"Initial Catalog = bshare_db;" +
+            @"Persist Security Info=False;" +
+            @"User ID = bshare_db;" +
+            @"Password=Pa$$w0rd;" +
+            @"MultipleActiveResultSets=False;" +
+            @"Encrypt=True;" +
+            @"TrustServerCertificate=False;" +
+            @"Connection Timeout = 30";
+        SqlDataReader reader_b;
 
         //都道府県
         string pref = "0";
@@ -35,48 +41,48 @@ namespace Bshare001
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            cn.ConnectionString = cnstr; //接続文字列のセット
-            cn.Open(); //接続開始
-            cmd.Connection = cn; //SQLコマンドに接続を渡す
-            cmd.CommandType = CommandType.Text; //文字列型で命令を渡す宣言
+            cn_b.ConnectionString = cnstr_b; //接続文字列のセット
+            cn_b.Open(); //接続開始
+            cmd_b.Connection = cn_b; //SQLコマンドに接続を渡す
+            cmd_b.CommandType = CommandType.Text; //文字列型で命令を渡す宣言
 
-            cmd.CommandText = "SELECT DISTINCT [prefecture] FROM [Hospital]";
+            cmd_b.CommandText = "SELECT DISTINCT [prefecture] FROM [Hospital]";               
+            
+            reader_b = cmd_b.ExecuteReader();
 
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            while (reader_b.Read())
             {
-                string rd = reader["prefecture"].ToString();
-                ListItem selectedListItem = DropDownList1.Items.FindByValue(rd);
+                ListItem selectedListItem = DropDownList1.Items.FindByValue(reader_b["prefecture"].ToString());
 
                 if (selectedListItem != null)
                 {
                     selectedListItem.Enabled = true;
                 }
             }
-            cn.Close(); //接続終了     
+            cn_b.Close(); //接続終了     
 
             if (Session["type"] != null)
             {
-                Label1.Text = Session["type"].ToString();//デバッグ
+                //Label1.Text = Session["type"].ToString();//デバッグ
 
                 //Session["id"]からアカウントを判別
                 if (Session["type"].Equals(0))
                 {
-                    Label1.Text += "管理者[0]全てのボタンを表示";
+                    //Label1.Text += "管理者[0]全てのボタンを表示";
                 }
                 else if (Session["type"].Equals(1))
                 {
-                    Label1.Text += "病院[1]管理ボタンを非表示";
+                    //Label1.Text += "病院[1]管理ボタンを非表示";
                     Button2.Visible = false;
                 }
                 else if (Session["type"].Equals(2))
                 {
-                    Label1.Text += "その他(消防)[2]全てのボタンを非表示";
+                    //Label1.Text += "その他(消防)[2]全てのボタンを非表示";
                     Button1.Visible = false;
                     Button2.Visible = false;
                 }
             }
+            ListBox1.Items.Add("------------------------------------------------------------------------------------------------------------------------");
         }
         protected void TbChanged(object sender, EventArgs e)
         {
@@ -127,22 +133,26 @@ namespace Bshare001
                 sql_text = "SELECT [Hospitalname],[Callnumber],[" + RadioButtonChecked + "],[Address] FROM [dbo].[Hospital]";
             }
 
-
-            cn.ConnectionString = cnstr; //接続文字列のセット
-            cn.Open(); //接続開始
-            cmd.Connection = cn; //SQLコマンドに接続を渡す
-            cmd.CommandType = CommandType.Text; //文字列型で命令を渡す宣言
-            cmd.CommandText = sql_text;
-            rd = cmd.ExecuteReader(); //SQLの実行(登録)
+            cn_b.ConnectionString = cnstr_b; //接続文字列のセット
+            cn_b.Open(); //接続開始
+            cmd_b.Connection = cn_b; //SQLコマンドに接続を渡す
+            cmd_b.CommandType = CommandType.Text; //文字列型で命令を渡す宣言
+            cmd_b.CommandText = sql_text;
+            reader_b = cmd_b.ExecuteReader(); //SQLの実行(登録)
             ListBox1.Items.Clear();
             
+            
             // 結果を表示します。
-            while (rd.Read())
+            while (reader_b.Read())
             {
-                ListBox1.Items.Add(String.Format("{0},{1},{2},{3}", rd["Hospitalname"], rd["Callnumber"], rd[RadioButtonChecked], rd["Address"]));
+                ListBox1.Items.Add(String.Format("{0},{1},{2},{3}",
+                    " 病院名：" + reader_b["Hospitalname"],
+                    " 電話番号：" + reader_b["Callnumber"],
+                    " 病床数：" + reader_b[RadioButtonChecked],
+                    " 住所：" + reader_b["Address"]));
             }
-            rd.Close();
-            cn.Close(); //接続終了
+            reader_b.Close();
+            cn_b.Close(); //接続終了
 
             TextBox1.Text = "";
         }
