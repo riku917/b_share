@@ -9,10 +9,11 @@
     <title></title>
     <style>
         body {
-            /*background-color:#2c4f54;*/
+            background-color:whitesmoke;
         }
         h1 {
             background-color:#203744;
+            background: #1B73BA;
             padding-left:25px;
             text-align:left;
             color:white;
@@ -20,17 +21,18 @@
         }
         .title {
             background-color:#203744;
+            background: #1B73BA;
             color:white;
             /*border-bottom: solid 2px orange;*/
             width: auto;
         }
         .box1 {
-            /*background-color:#43676b;*/
+            background-color:whitesmoke;
             /*width:460px;*/
             display:inline-block;
         }
         .box2 {
-            /*background-color:#43676b;*/
+            background-color:whitesmoke;
             /*width:635px;*/
             display:inline-block;
         }
@@ -53,15 +55,24 @@
         .buttondlt{
             background-color:tomato;
         }
+        .boxbtn{
+            text-align:right;
+            padding-right:20px;
+        }
+        .backbtn {
+            width:100px;
+        }
+        .backbtn:hover{
+            background-color:darkgray;
+        }
         
     </style>
-
-
+    <link rel="stylesheet" type="text/css" href="bg.css"/>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-
+        <div id="particles-js"></div>
+    <div id="wrapper">
         <h1>
             管理
         </h1>
@@ -70,7 +81,7 @@
             ユーザー管理
         </div>
 
-        
+        <div class="back">
         <asp:ListView ID="ListView1" runat="server" DataKeyNames="Id" DataSourceID="SqlDataSource2" InsertItemPosition="LastItem">
             <AlternatingItemTemplate>
                 <tr style="">
@@ -223,6 +234,7 @@
                 <asp:Parameter Name="Id" Type="String" />
             </UpdateParameters>
         </asp:SqlDataSource>
+            </div>
             </div>
 
 <%----------------------------------------------------------------------------------------------------------------------%>
@@ -537,9 +549,13 @@
         </asp:SqlDataSource>
             </div>
             <br />
-
-            <asp:Button ID="Button1" runat="server" Text="戻る" OnClick="Button1_Click" />
-       
+        <br />
+        <div class="boxbtn">
+            <asp:Button ID="Button1" runat="server" Text="戻る" OnClick="Button1_Click" CssClass="backbtn" />
+        </div>
+        </div>
     </form>
+    <script src="bg2.js"></script>
+    <script src="bg.js"></script>
 </body>
 </html>

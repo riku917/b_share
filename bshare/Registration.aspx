@@ -14,6 +14,7 @@
         h1 {
             text-align:center;
             background: #1B73BA;
+
             box-sizing: border-box;
             color: #FFFFFF;
             font-size: 30px;
@@ -56,11 +57,15 @@
             background-color:darkgray;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="bg.css"/>
 </head>
 <body>
+    <div id="particles-js"></div>
+    <div id="wrapper">
     <form id="form1" runat="server">
+
         <div class="box1">
-            <h1>
+                <h1>
                 更新
             </h1>
         
@@ -132,5 +137,8 @@
         </div>
         </div>
     </form>
+    </div>
+    <script src="bg2.js"></script>
+    <script src="bg.js"></script>
 </body>
 </html>

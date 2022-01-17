@@ -68,7 +68,8 @@ namespace Bshare001
                 //Session["id"]からアカウントを判別
                 if (Session["type"].Equals(0))
                 {
-                    //Label1.Text += "管理者[0]全てのボタンを表示";
+                    //Label1.Text += "管理者[0]更新ボタンを非表示";
+                    Button1.Visible = false;
                 }
                 else if (Session["type"].Equals(1))
                 {

@@ -170,6 +170,9 @@
     <Content Include="App_Data\SampleDatabase1_log.ldf">
       <DependentUpon>SampleDatabase1.mdf</DependentUpon>
     </Content>
+    <Content Include="bg.css" />
+    <Content Include="bg.js" />
+    <Content Include="bg2.js" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

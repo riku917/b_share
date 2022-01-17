@@ -64,6 +64,8 @@
             background-color:darkgray;
         }
     </style>
+    
+    <link rel="stylesheet" type="text/css" href="bg.css"/>
 </head>
 <body>
     <div id="map-container"></div>
@@ -72,7 +74,8 @@
     </div>
     
     <form id="form1" runat="server">
-     
+     <div id="particles-js"></div>
+    <div id="wrapper">
         <div class="box">
         
         <div class="mapbox">
@@ -229,7 +232,11 @@
 
         <br />
         
+    
+        </div>
     </form>
+    <script src="bg2.js"></script>
+    <script src="bg.js"></script>
     <script>jQuery('img[usemap]').rwdImageMaps();
         jQuery('.image-pref').on('click', function () {
             var pref = jQuery(this).attr('title');

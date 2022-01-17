@@ -7,13 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>ログイン</title>
     <style>
-        .body1{
-            background-color: red;
+        body {
+            background-color:whitesmoke;
         }
         .labeltitle {
             width:550px;
             height:55px;
             background-color:teal;
+            background: #1B73BA;
             margin : 0 auto;
         }
         
@@ -40,6 +41,7 @@
         /*ボタンの色と大きさ*/
         .button {
              background-color:teal;
+             background: #1B73BA;
              width:500px;
              height:40px;
         }
@@ -60,10 +62,13 @@
              background-color: whitesmoke;
         }
     </style>
-    <script type="module" src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="bg.css"/>
 </head>
 <body>
     <form id="form1" runat="server">
+        
+    <div id="particles-js"></div>
+    <div id="wrapper">
         <div id="body1">
         <div class="back">
         <div class="labeltitle">
@@ -90,7 +95,10 @@
        </div>
        </div>
         </div>
+        </div>
     </form>
+    <script src="bg2.js"></script>
+    <script src="bg.js"></script>
 </body>
 </html>
 
