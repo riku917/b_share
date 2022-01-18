@@ -35,9 +35,13 @@ namespace bshare
             @"TrustServerCertificate=False;" +
             @"Connection Timeout = 30";
         SqlDataReader reader_b;
-        
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Session["id"] = "";
+            Session["type"] = "";
+        }
+            protected void Button1_Click(object sender, EventArgs e)
         {
             //ローカルデータベース
             ////ログイン認証機能

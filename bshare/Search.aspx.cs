@@ -76,12 +76,18 @@ namespace Bshare001
                     //Label1.Text += "病院[1]管理ボタンを非表示";
                     Button2.Visible = false;
                 }
-                else if (Session["type"].Equals(2))
+                else
+                //else if (Session["type"].Equals(2))
                 {
                     //Label1.Text += "その他(消防)[2]全てのボタンを非表示";
                     Button1.Visible = false;
                     Button2.Visible = false;
                 }
+            }
+            else
+            {
+                Button1.Visible = false;
+                Button2.Visible = false;
             }
             ListBox1.Items.Add("------------------------------------------------------------------------------------------------------------------------");
         }

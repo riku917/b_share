@@ -33,43 +33,57 @@ namespace bshare
         protected void Page_Load(object sender, EventArgs e)
         {
             int hospitalid = 0;
+            Button3.Visible = false;
+            Button6.Visible = false;
+            Button7.Visible = false;
+            Button8.Visible = false;
+            Button9.Visible = false;
+            Button10.Visible = false;
             /*-------*/
             //Session["type"] = 1;//デバッグ用
             //Session["id"] = "ab";//デバッグ用
             /*-------*/
             if (!IsPostBack)
             {
-                if (Session["type"].Equals(1))
+                if (Session["type"] != null)
                 {
-                    //Azure SQL DataBase
-                    cn_b.ConnectionString = cnstr_b;
-                    cn_b.Open();
-                    cmd_b.Connection = cn_b;
-                    cmd_b.CommandType = CommandType.Text;
-                    cmd_b.CommandText = "SELECT * FROM [dbo].[user] WHERE Id = N'" + Session["id"].ToString() + "'";
-                    reader_b = cmd_b.ExecuteReader();
-                    while (reader_b.Read())
+                    if (Session["type"].Equals(1))
                     {
-                        hospitalid = (int)reader_b["HospitalID"];
+                        Button3.Visible = true;
+                        Button6.Visible = true;
+                        Button7.Visible = true;
+                        Button8.Visible = true;
+                        Button9.Visible = true;
+                        Button10.Visible = true;
+                        //Azure SQL DataBase
+                        cn_b.ConnectionString = cnstr_b;
+                        cn_b.Open();
+                        cmd_b.Connection = cn_b;
+                        cmd_b.CommandType = CommandType.Text;
+                        cmd_b.CommandText = "SELECT * FROM [dbo].[user] WHERE Id = N'" + Session["id"].ToString() + "'";
+                        reader_b = cmd_b.ExecuteReader();
+                        while (reader_b.Read())
+                        {
+                            hospitalid = (int)reader_b["HospitalID"];
+                        }
+                        cn_b.Close();
+                        cn_b.Open();
+                        cmd_b.CommandText = "SELECT * FROM [dbo].[Hospital] WHERE HospitalID = " + hospitalid;
+                        reader_b = cmd_b.ExecuteReader();
+                        while (reader_b.Read())
+                        {
+                            Label1.Text = reader_b["Hospitalname"].ToString();
+                            TextBox3.Text = reader_b["Bedcount"].ToString();
+                            TextBox6.Text = reader_b["Bedtype"].ToString();
+                            TextBox7.Text = reader_b["Bedinfected"].ToString();
+                            TextBox8.Text = reader_b["Bedmental"].ToString();
+                            TextBox9.Text = reader_b["Bedcovid"].ToString();
+                            TextBox10.Text = reader_b["Bedsevere"].ToString();
+                        }
+                        cn_b.Close();
                     }
-                    cn_b.Close();
-                    cn_b.Open();
-                    cmd_b.CommandText = "SELECT * FROM [dbo].[Hospital] WHERE HospitalID = " + hospitalid;
-                    reader_b = cmd_b.ExecuteReader();
-                    while (reader_b.Read())
-                    {
-                        Label1.Text = reader_b["Hospitalname"].ToString();
-                        TextBox3.Text = reader_b["Bedcount"].ToString();
-                        TextBox6.Text = reader_b["Bedtype"].ToString();
-                        TextBox7.Text = reader_b["Bedinfected"].ToString();
-                        TextBox8.Text = reader_b["Bedmental"].ToString();
-                        TextBox9.Text = reader_b["Bedcovid"].ToString();
-                        TextBox10.Text = reader_b["Bedsevere"].ToString();
-                    }
-                    cn_b.Close();
                 }
             }
-
         }
 
         protected void Button3_Click(object sender, EventArgs e)

@@ -11,7 +11,16 @@ namespace bshare
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ListView1.Visible = false;
+            ListView2.Visible = false;
+            if (Session["type"] != null)
+            {
+                if (Session["type"].Equals(0))
+                {
+                    ListView1.Visible = true;
+                    ListView2.Visible = true;
+                }
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
