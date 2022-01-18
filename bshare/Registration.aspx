@@ -9,31 +9,31 @@
     <script type="module" src="index.js"></script>
     <style>
         body{
-            background-color:whitesmoke;
-        }
-        h1 {
-            text-align:center;
-            background: #1B73BA;
-
-            box-sizing: border-box;
-            color: #FFFFFF;
-            font-size: 30px;
-            /*margin-bottom: 20px;*/
-            padding: 5px;
-            position: relative;
-            width: 100%;
+            background-color:white;
         }
         .box1{
             background-color:white;
             width:700px;
             margin:auto;
         }
+        h1 {
+            text-align:center;
+            background: #1B73BA;
+
+            box-sizing: border-box;
+            color: white;
+            font-size: 30px;
+            /*margin-bottom: 20px;*/
+            padding: 5px;
+            position: relative;
+            width: 100%;
+        }
         .box2{
             padding-left:20px;
         }
         td {
            
-            /*color:white;*/
+            color:whitesmoke;
         }
         th{
             
@@ -47,8 +47,9 @@
             border:  solid  3px  #1b7c26;
         }
         .boxbtn{
-            text-align:right;
+            text-align:center;
             padding-right:20px;
+            background-color:white;
         }
         .backbtn {
             width:100px;
@@ -133,7 +134,7 @@
                    </div>
         <br />
         <div class="boxbtn">
-            <asp:Button ID="Button0" runat="server" Text="戻る" OnClick="Button0_Click" CssClass="backbtn" />
+            <asp:Button ID="Button0" runat="server" Text="戻る" OnClick="Button0_Click" CssClass="backbtn"/>
         </div>
         </div>
     </form>

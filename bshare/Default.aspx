@@ -8,7 +8,7 @@
     <title>ログイン</title>
     <style>
         body {
-            background-color:whitesmoke;
+            background-color:white;
         }
         .labeltitle {
             width:550px;
@@ -59,7 +59,7 @@
              margin : 0 auto;
              width:550px;
              height:450px;
-             background-color: whitesmoke;
+             background-color: white;
         }
     </style>
     <link rel="stylesheet" type="text/css" href="bg.css"/>

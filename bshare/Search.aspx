@@ -11,7 +11,7 @@
     <script src="./jquery.rwdImageMaps.js"></script>
     <style>
         body {
-            background-color:whitesmoke;
+            background-color:white;
         }
         .image-pref{
             cursor:pointer

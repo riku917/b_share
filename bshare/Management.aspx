@@ -9,7 +9,7 @@
     <title></title>
     <style>
         body {
-            background-color:whitesmoke;
+            background-color:white;
         }
         h1 {
             background-color:#203744;
@@ -27,14 +27,15 @@
             width: auto;
         }
         .box1 {
-            background-color:whitesmoke;
+            background-color:white;
             /*width:460px;*/
             display:inline-block;
         }
         .box2 {
-            background-color:whitesmoke;
+            background-color:white;
             /*width:635px;*/
             display:inline-block;
+            width:100%;
         }
         td {
            border-collapse: collapse;
@@ -51,6 +52,7 @@
         }
         table {
             border-collapse: collapse;
+            margin-bottom: 0px;
         }
         .buttondlt{
             background-color:tomato;
@@ -65,7 +67,6 @@
         .backbtn:hover{
             background-color:darkgray;
         }
-        
     </style>
     <link rel="stylesheet" type="text/css" href="bg.css"/>
 </head>
@@ -553,6 +554,7 @@
         <div class="boxbtn">
             <asp:Button ID="Button1" runat="server" Text="戻る" OnClick="Button1_Click" CssClass="backbtn" />
         </div>
+        <br />
         </div>
     </form>
     <script src="bg2.js"></script>
